@@ -12,9 +12,14 @@ RUN cd /root \
     &&  cp frps /usr/bin/ \
     &&  mkdir -p /etc/frp \
     &&  cp frps.ini /etc/frp \
-    &&  echo "kcp_bind_port = 7000 \n token = ${token}\n" >> /etc/frp/frps.ini
+    &&  echo "kcp_bind_port = 7000 \n" >> /etc/frp/frps.ini \
+    && cd /root && echo '
+    #! /bin/bash
+    echo \"token = ${token}\" >> /etc/frp/frps.ini
+    /usr/bin/frps -c /etc/frp/frps.ini
+    ' >> ./start.sh && chmod +x ./start.sh \
     &&  cd /root \
     &&  rm frp_${FRP_VERSION}_linux_amd64.tar.gz \
     &&  rm -rf frp_${FRP_VERSION}_linux_amd64/ 
 
-ENTRYPOINT /usr/bin/frps -c /etc/frp/frps.ini
+ENTRYPOINT /root/start.sh
