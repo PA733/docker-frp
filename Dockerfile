@@ -1,4 +1,4 @@
-FROM docker pull ubuntu:22.04
+FROM ubuntu:22.04
 
 LABEL maintainer="pa733 <admin@ypemc.com>"
 
