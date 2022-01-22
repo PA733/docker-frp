@@ -15,7 +15,7 @@ RUN cd /root \
     &&  echo "kcp_bind_port = 7000 \n" >> /etc/frp/frps.ini \
     && cd /root && echo ' \
     #! /bin/bash \
-    echo \"token = ${token}\" >> /etc/frp/frps.ini &&\
+    echo "token = ${token}" >> /etc/frp/frps.ini &&\
     /usr/bin/frps -c /etc/frp/frps.ini \
     ' >> ./start.sh && chmod +x ./start.sh \
     &&  cd /root \
